@@ -60,21 +60,7 @@ header .navigation .active {
     flex: 1 1 auto;
 }
 
-@media only screen and (max-width: 1024px) {
-    .presentation {
-        flex-direction: column;
-    }
 
-    .typewriter {
-        align-items: center;
-    }
-
-    header .navigation {
-        justify-content: center;
-        flex: 1 1 auto;
-        margin-left: 0;
-    }
-}
 
 .profile-photo {
     height: 300px;
@@ -133,6 +119,26 @@ header .navigation .active {
     from, to { border-color: transparent }
     50% { border-color: yellow }
   }
+
+  @media only screen and (max-width: 1024px) {
+    .presentation {
+        flex-direction: column;
+    }
+
+    .typewriter {
+        align-items: center;
+    }
+
+    header .navigation {
+        justify-content: center;
+        flex: 1 1 auto;
+        margin-left: 0;
+    }
+
+    .typewriter h1 { 
+        font-size: 1.6rem;
+    }
+}
 
   /* Projects Page */
 
