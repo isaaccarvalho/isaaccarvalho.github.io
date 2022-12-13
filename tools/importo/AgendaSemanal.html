@@ -10,7 +10,9 @@
 </head>
 <body>
     <div class="tool">
+        
         <form>
+            <h1>Gerador Agenda Semanal</h1>
             <label for="mes">Mês</label>
             <input  type="text" name="dia" id="mes">
             <div class="dias">
@@ -49,6 +51,13 @@
               <div class="form__group">
                 <textarea id="dom" class="form__field" placeholder="Domingo" rows="6"></textarea>
                 <label for="dom" class="form__label">Domingo</label>
+              </div>
+
+              
+
+              <div class="dias" style="margin-top: 30px;">
+                <label for="fontsize">Tamanho da Fonte</label>
+                <input type="number" min="0" id="fontsize" value="16">
               </div>
 
               <div class="buttons"><button type="button" onclick="updateImage()">Gerar Imagem</button>
@@ -109,6 +118,8 @@
             if(document.getElementById("mes").value!='')
                 fileName = 'Agenda Semanal - '+document.getElementById("mes").value;+'.jpg'
 
+            var fontSize = parseInt(document.getElementById("fontsize").value)/16;
+
             document.getElementById("dias").innerHTML = "";
 
             var days = ["seg", "ter", "qua", "qui", "sex", "sab", "dom"];
@@ -116,11 +127,17 @@
             
 
             days.forEach(function(day) {
+
+                console.log
+                var text = document.getElementById(day).value;
+                text = text.replace(/\n/g, '<br>');
+                text = markuptext(text, "%", "strong");
+
                 if(document.getElementById(day).value!='') {
                     document.getElementById("dias").innerHTML += `<li class="dia">
                     <div class="nome">`+day+`</div>
-                    <div class="prog">
-                    `+document.getElementById(day).value.replace(/\n/g, '<br>')+`
+                    <div class="prog" style="font-size: `+fontSize+`em">
+                    `+text+`
                     </div>
                 </li>`;
                 }
@@ -141,6 +158,16 @@
                 a.download = fileName;
                 a.click();
             });
+        }
+
+        function markuptext(text) {
+            
+            const b_regex = /(\*)([^*]+?)(\*)/gs;
+            const i_regex = /(_)([^_]+?)(_)/gs;
+
+            const result = text.replace(b_regex, `<b>$2</b>`).replace(i_regex, `<i>$2</i>`);
+
+            return result;
         }
     </script>
     
