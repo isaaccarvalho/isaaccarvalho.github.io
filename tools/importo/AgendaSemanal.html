@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <title>Gerador da Agenda Semanal | IMPORTO</title>
+</head>
+<body>
+    <div class="tool">
+        <form>
+            <label for="mes">Mês</label>
+            <input  type="text" name="dia" id="mes">
+            <div class="dias">
+                <label for="dia1">Dia</label>
+                <input type="number" name="dia1" id="dia1">
+
+                <label for="dia1">ao</label>
+                <input type="number" name="dia2" id="dia2">
+            </div>
+            
+
+            <div class="form__group">
+                <textarea id="seg" class="form__field" placeholder="Segunda" rows="6"></textarea>
+                <label for="seg" class="form__label">Segunda</label>
+              </div>
+              <div class="form__group">
+                <textarea id="ter" class="form__field" placeholder="Terça" rows="6"></textarea>
+                <label for="ter" class="form__label">Terça</label>
+              </div>
+              <div class="form__group">
+                <textarea id="qua" class="form__field" placeholder="Quarta" rows="6"></textarea>
+                <label for="qua" class="form__label">Quarta</label>
+              </div>
+              <div class="form__group">
+                <textarea id="qui" class="form__field" placeholder="Quinta" rows="6"></textarea>
+                <label for="qui" class="form__label">Quinta</label>
+              </div>
+              <div class="form__group">
+                <textarea id="sex" class="form__field" placeholder="Sexta" rows="6"></textarea>
+                <label for="sex" class="form__label">Sexta</label>
+              </div>
+              <div class="form__group">
+                <textarea id="sab" class="form__field" placeholder="Sábado" rows="6"></textarea>
+                <label for="sab" class="form__label">Sábado</label>
+              </div>
+              <div class="form__group">
+                <textarea id="dom" class="form__field" placeholder="Domingo" rows="6"></textarea>
+                <label for="dom" class="form__label">Domingo</label>
+              </div>
+
+              <div class="buttons"><button type="button" onclick="updateImage()">Gerar Imagem</button>
+                <button type="button" onclick="captureImage()"><i class="fa fa-download" aria-hidden="true"></i></button></div>
+              
+          
+        </form>
+
+        
+    </div>
+    <div class="preview">
+        <div class="image" id="image">
+            <div class="header">
+                <img class="logo" src="/images/ImportoTransparent.png">
+                <div class="title">
+                    <h1>Agenda Semanal</h1>
+                    <span class="mes" id="mestxt">Dezembro</span>
+                    <div class="semana">
+                        Dia
+                        <span id="dia1txt">12</span>
+                        ao
+                        <span id="dia2txt">18</span>
+                    </div>
+                </div>
+            </div>
+            <ul class="dias" id="dias">
+                <li class="dia">
+                    <div class="nome">Seg</div>
+                    <div class="prog">
+                        Digite o mês e o intervalo da semana
+                    </div>
+                </li>
+                <li class="dia">
+                    <div class="nome">Ter</div>
+                    <div class="prog">
+                    Digite a programação do dia da semana ou deixe o dia desejado em branco
+                    </div>
+                </li>
+                <li class="dia">
+                    <div class="nome">Qua</div>
+                    <div class="prog">
+                    Aperte o botão 'Gerar Imagem' e baixe logo em seguida
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+         
+         var fileName = 'Agenda Semanal.jpg'
+
+        function updateImage() {
+            document.getElementById("mestxt").innerHTML = document.getElementById("mes").value;
+            document.getElementById("dia1txt").innerHTML = document.getElementById("dia1").value;
+            document.getElementById("dia2txt").innerHTML = document.getElementById("dia2").value;
+
+            if(document.getElementById("mes").value!='')
+                fileName = 'Agenda Semanal - '+document.getElementById("mes").value;+'.jpg'
+
+            document.getElementById("dias").innerHTML = "";
+
+            var days = ["seg", "ter", "qua", "qui", "sex", "sab", "dom"];
+            
+            
+
+            days.forEach(function(day) {
+                if(document.getElementById(day).value!='') {
+                    document.getElementById("dias").innerHTML += `<li class="dia">
+                    <div class="nome">`+day+`</div>
+                    <div class="prog">
+                    `+document.getElementById(day).value.replace(/\n/g, '<br>')+`
+                    </div>
+                </li>`;
+                }
+            })
+
+            
+
+        }
+
+        function captureImage() {
+            html2canvas(document.querySelector('#image'), {
+                windowWidth: 1350,
+                windowHeight: 2400
+                
+            }).then(canvas => {
+                var a = document.createElement('a');
+                a.href = canvas.toDataURL("image/jpg");
+                a.download = fileName;
+                a.click();
+            });
+        }
+    </script>
+    
+</body>
+</html>
