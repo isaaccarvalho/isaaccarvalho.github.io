@@ -736,13 +736,14 @@ body {
 }
 @media (max-width: 600px) {
   .intro--banner {
-    height: 360px;
+    height: 320px;
   }
   .intro--banner h1 {
     font-size: 48px;
   }
   .intro--banner img {
-    margin-right: -60px;
+    margin-right: -80px;
+    
   }
   .intro--banner p {
     max-width: 50%;
@@ -753,6 +754,10 @@ body {
   }
   .intro--options h3 {
     font-size: 16px;
+    margin-bottom: 0;
+  }
+
+  .intro--options a {
     margin-bottom: 0;
   }
 }
@@ -768,7 +773,7 @@ body {
     margin-top: 0;
   }
   .intro--options {
-    
+    display: none;
   }
 }
 .work {
@@ -1190,6 +1195,7 @@ body {
   .about--banner h2 {
     margin-top: 0;
     font-size: 55px;
+    margin-bottom: 0px;
   }
   .about--banner h2::before {
     top: 43px;
