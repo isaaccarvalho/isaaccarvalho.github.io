@@ -1211,6 +1211,10 @@ body {
   .about--options {
     display: none;
   }
+
+  .collaborator .collab--photo {
+    scale: 0.8;
+  }
 }
 .contact {
   position: fixed;
