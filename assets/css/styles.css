@@ -1208,7 +1208,7 @@ body {
   }
   .about--banner h2 {
     margin-top: 0;
-    font-size: 55px;
+    font-size: 48px;
     margin-bottom: 0px;
   }
   .about--banner h2::before {
@@ -1220,7 +1220,7 @@ body {
     left: 205px;
   }
   .about--banner img {
-    width: 250px;
+    width: 300px;
   }
   .about--banner p {
     max-width: 100%;
